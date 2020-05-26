@@ -44,7 +44,7 @@
       <v-btn depressed color="primary" @click="get_images">Get Images</v-btn>
       <br>
       <span>{{ message }}</span>
-      
+      <div v-for="image in images" :key="image.url"><v-img :src="image.url" aspect-ratio="1.7"></v-img></div>
     </v-content>
 
     <div class="text-center">
@@ -95,7 +95,6 @@
         </v-list>
       </v-bottom-sheet>
     </div>
-
   </v-app>
 </template>
 
@@ -130,6 +129,7 @@ export default {
           return pattern.test(value) || 'Invalid url.'
         },
       ],
+      images: [],
       message: '',
       url: '',
       // diffbot: `http://api.diffbot.com/v3/image?&token=878c55163b7541c4455a7d7198468a70&url=https%3A//aleksandar.panov.rs`
@@ -145,7 +145,8 @@ export default {
       this.message = 'Wait, getting images'
       axios.get(`http://api.diffbot.com/v3/image?&token=878c55163b7541c4455a7d7198468a70&url=${this.url}`)
       .then((response) => {
-        console.log(response.data.objects);
+        console.log(response.data.objects)
+        this.images = response.data.objects
         this.message = `Found ${response.data.objects.length} images. Check console!`
       })
       .catch((error) => {
