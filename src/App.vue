@@ -37,11 +37,14 @@
       </v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-content class="t-field">
       <!-- <HelloWorld/> -->
 
-      <v-text-field class="url_width" placeholder="Paste url here" :rules="rules"></v-text-field>
-
+      <v-text-field v-model="url" placeholder="Paste url here" :rules="rules"></v-text-field>
+      <v-btn depressed color="primary" @click="get_images">Get Images</v-btn>
+      <br>
+      <span>{{ message }}</span>
+      
     </v-content>
 
     <div class="text-center">
@@ -127,6 +130,9 @@ export default {
           return pattern.test(value) || 'Invalid url.'
         },
       ],
+      message: '',
+      url: '',
+      // diffbot: `http://api.diffbot.com/v3/image?&token=878c55163b7541c4455a7d7198468a70&url=https%3A//aleksandar.panov.rs`
   }),
   methods: {
     close_sheet(num) {
@@ -134,13 +140,24 @@ export default {
       if(num == 3) {
         window.location.href = 'https://google.com'
       }
+    },
+    get_images() {
+      this.message = 'Wait, getting images'
+      axios.get(`http://api.diffbot.com/v3/image?&token=878c55163b7541c4455a7d7198468a70&url=${this.url}`)
+      .then((response) => {
+        console.log(response.data.objects);
+        this.message = `Found ${response.data.objects.length} images. Check console!`
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
   }
 };
 </script>
 
 <style>
-  .v-text-field {
+  .t-field {
     width: 80%;
     margin: auto;
   }
