@@ -28,18 +28,71 @@
       <v-spacer></v-spacer>
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+        href="#"
+        target="_self"
         text
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">My Pad</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <!-- <HelloWorld/> -->
+
+      <v-text-field class="url_width" placeholder="Paste url here" :rules="rules"></v-text-field>
+
     </v-content>
+
+    <div class="text-center">
+      <v-bottom-sheet v-model="sheet">
+        <template v-slot:activator="{ on }">
+          <v-bottom-navigation
+            v-model="bottomNav"
+          >
+            <v-btn value="land">
+              <span>Land</span>
+              <v-icon>mdi-nature-people</v-icon>
+            </v-btn>
+
+            <v-btn value="home">
+              <span>Home</span>
+              <v-icon>mdi-home</v-icon>
+            </v-btn>
+
+            <v-btn value="notifications">
+              <span>Notifications</span>
+              <v-icon>mdi-bell</v-icon>
+            </v-btn>
+
+            <v-btn value="add-item" v-on="on">
+              <span>Add-Item</span>
+              <v-icon>mdi-plus-circle</v-icon>
+            </v-btn>
+          </v-bottom-navigation>
+        </template>
+        <v-list>
+          <!-- <v-subheader>Bottom menu</v-subheader> -->
+          <v-list-item
+            v-for="tile in tiles"
+            :key="tile.title"
+            @click="close_sheet(tile.num)"
+          >
+            <v-list-item-avatar>
+              <v-avatar size="32px" tile>
+                <!-- <img
+                  :src="`https://cdn.vuetifyjs.com/images/bottom-sheets/${tile.img}`"
+                  :alt="tile.title"
+                > -->
+                <v-icon>{{ tile.icon }}</v-icon>
+              </v-avatar>
+            </v-list-item-avatar>
+            <v-list-item-title>{{ tile.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-bottom-sheet>
+    </div>
+
   </v-app>
 </template>
 
@@ -54,7 +107,41 @@ export default {
   },
 
   data: () => ({
-    //
+    bottomNav: 'recent',
+
+    sheet: false,
+      tiles: [
+        // { img: 'keep.png', title: 'Add a Photo' },
+        // { img: 'inbox.png', title: 'Scan a Barcode' },
+        // { img: 'hangouts.png', title: 'Search the Web' },
+        { icon: 'mdi-camera-outline', title: 'Add a Photo', num: 1 },
+        { icon: 'mdi-barcode-scan', title: 'Scan a Barcode', num: 2 },
+        { icon: 'mdi-web', title: 'Search the Web', num: 3 },
+      ],
+
+      rules: [
+        // value => !!value || 'Required.',
+        // value => (value || '').length <= 20 || 'Max 20 characters',
+        value => {
+          const pattern = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
+          return pattern.test(value) || 'Invalid url.'
+        },
+      ],
   }),
+  methods: {
+    close_sheet(num) {
+      this.sheet = false
+      if(num == 3) {
+        window.location.href = 'https://google.com'
+      }
+    }
+  }
 };
 </script>
+
+<style>
+  .v-text-field {
+    width: 80%;
+    margin: auto;
+  }
+</style>
