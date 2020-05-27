@@ -38,7 +38,8 @@
     </v-app-bar>
 
     <v-content class="t-field">
-      <!-- <HelloWorld/> -->
+      
+      <router-view/>
 
       <v-text-field v-model="url" placeholder="Paste url here" :rules="rules"></v-text-field>
       <v-btn depressed color="primary" @click="get_images">Get Images</v-btn>
@@ -99,13 +100,12 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+   
   },
 
   data: () => ({
@@ -158,8 +158,12 @@ export default {
 </script>
 
 <style>
+  .row {
+    padding-top: 20px!important;
+  }
   .t-field {
     width: 80%;
     margin: auto;
+    padding: 0! important;
   }
 </style>
