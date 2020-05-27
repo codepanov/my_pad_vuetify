@@ -1,6 +1,6 @@
 <template>
-  <div> <!-- no class main_element here on purpose -->
-      <Gallery />
+  <div> <!-- no class 'main_element' here on purpose -->
+      <Gallery :images="images"/>
 
       <v-text-field v-model="url" placeholder="Paste url here" :rules="rules"></v-text-field>
       <v-btn depressed color="primary" @click="get_images">Get Images</v-btn>
