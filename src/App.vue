@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark >
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -12,40 +8,24 @@
           contain
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
           transition="scale-transition"
-          width="40"
-        />
-
+          width="40" />
         <v-img
           alt="Vuetify Name"
           class="shrink mt-1 hidden-sm-and-down"
           contain
           min-width="100"
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+          width="100" />
       </div>
-
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="#"
-        target="_self"
-        text
-      >
+      <v-btn href="#" target="_self" text>
         <span class="mr-2">My Pad</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-content class="t-field">
-
       <router-view/>
-
-      <v-text-field v-model="url" placeholder="Paste url here" :rules="rules"></v-text-field>
-      <v-btn depressed color="primary" @click="get_images">Get Images</v-btn>
-      <br>
-      <span>{{ message }}</span>
-      <div v-for="image in images" :key="image.url"><v-img :src="image.url" aspect-ratio="1.7"></v-img></div>
     </v-content>
 
     <div class="text-center">
@@ -70,7 +50,7 @@
               <v-icon>mdi-bell</v-icon>
             </v-btn>
 
-            <v-btn to="/gallery" value="add-item" v-on="on">
+            <v-btn to="/add-item" value="add-item" v-on="on">
               <span>Add-Item</span>
               <v-icon>mdi-plus-circle</v-icon>
             </v-btn>
@@ -159,7 +139,7 @@ export default {
 
 <style>
   .main_element {
-    padding: 56px 20px 0 0;
+    padding: 56px 10px 0 0;
   }
   .row {
     padding-top: 20px!important;

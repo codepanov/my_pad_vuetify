@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Land from '../views/Land.vue'
 import Notifications from '../views/Notifications.vue'
-import Gallery from '../components/ImageGallery.vue'
+// import Gallery from '../components/ImageGallery.vue'
+import AddItem from '../views/AddItem.vue'
 
 Vue.use(VueRouter)
 
@@ -23,10 +24,15 @@ Vue.use(VueRouter)
     name: 'Notifications',
     component: Notifications
   },
+  // {
+  //   path: '/gallery',
+  //   name: 'Gallery',
+  //   component: Gallery
+  // },
   {
-    path: '/gallery',
-    name: 'Gallery',
-    component: Gallery
+    path: '/add-item',
+    name: 'AddItem',
+    component: AddItem
   }
   // {
   //   path: '/about',
