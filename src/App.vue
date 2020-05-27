@@ -38,7 +38,7 @@
     </v-app-bar>
 
     <v-content class="t-field">
-      
+
       <router-view/>
 
       <v-text-field v-model="url" placeholder="Paste url here" :rules="rules"></v-text-field>
@@ -53,13 +53,14 @@
         <template v-slot:activator="{ on }">
           <v-bottom-navigation
             v-model="bottomNav"
+            shift
           >
             <v-btn value="land">
               <span>Land</span>
               <v-icon>mdi-nature-people</v-icon>
             </v-btn>
 
-            <v-btn value="home">
+            <v-btn to="/" value="home">
               <span>Home</span>
               <v-icon>mdi-home</v-icon>
             </v-btn>
@@ -69,7 +70,7 @@
               <v-icon>mdi-bell</v-icon>
             </v-btn>
 
-            <v-btn value="add-item" v-on="on">
+            <v-btn to="gallery" value="add-item" v-on="on">
               <span>Add-Item</span>
               <v-icon>mdi-plus-circle</v-icon>
             </v-btn>
