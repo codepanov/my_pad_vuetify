@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Land from '../views/Land.vue'
+import Notifications from '../views/Notifications.vue'
 import Gallery from '../components/ImageGallery.vue'
 
 Vue.use(VueRouter)
@@ -10,6 +12,16 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/land',
+    name: 'Land',
+    component: Land
+  },
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    component: Notifications
   },
   {
     path: '/gallery',

@@ -1,11 +1,5 @@
 <template>
-  <div class="home">
+  <div class="main_element">
     <h1>Home page</h1>
   </div>
 </template>
-
-<style scoped>
- .home {
-   padding: 56px 20px 0 0;
- }
-</style>

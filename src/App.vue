@@ -52,10 +52,10 @@
       <v-bottom-sheet v-model="sheet">
         <template v-slot:activator="{ on }">
           <v-bottom-navigation
-            v-model="bottomNav"
+            v-model="activeTab"
             shift
           >
-            <v-btn value="land">
+            <v-btn to="/land" value="land">
               <span>Land</span>
               <v-icon>mdi-nature-people</v-icon>
             </v-btn>
@@ -65,12 +65,12 @@
               <v-icon>mdi-home</v-icon>
             </v-btn>
 
-            <v-btn value="notifications">
+            <v-btn to="/notifications" value="notifications">
               <span>Notifications</span>
               <v-icon>mdi-bell</v-icon>
             </v-btn>
 
-            <v-btn to="gallery" value="add-item" v-on="on">
+            <v-btn to="/gallery" value="add-item" v-on="on">
               <span>Add-Item</span>
               <v-icon>mdi-plus-circle</v-icon>
             </v-btn>
@@ -110,8 +110,7 @@ export default {
   },
 
   data: () => ({
-    bottomNav: 'recent',
-
+    activeTab: 'home',
     sheet: false,
       tiles: [
         // { img: 'keep.png', title: 'Add a Photo' },
@@ -159,6 +158,9 @@ export default {
 </script>
 
 <style>
+  .main_element {
+    padding: 56px 20px 0 0;
+  }
   .row {
     padding-top: 20px!important;
   }
