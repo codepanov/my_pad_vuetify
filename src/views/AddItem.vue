@@ -1,12 +1,22 @@
 <template>
   <div> <!-- no class 'main_element' here on purpose -->
-      <Gallery :images="images" />
+      <!-- <Gallery :images="images" /> -->
 
-      <vue-select-image :dataImages="dataImages"
-        :is-multiple="true"
-        :selectedImages="initialSelected"
-        @onselectmultipleimage="onSelectMultipleImage">
-      </vue-select-image>
+      <v-row>
+        <v-col cols="12" sm="6" offset-sm="3" class="top-fix">
+          <v-card>
+            <v-container fluid>
+              <v-row>
+                <vue-select-image pa-0 :dataImages="dataImages"
+                  :is-multiple="true"
+                  :selectedImages="initialSelected"
+                  @onselectmultipleimage="onSelectMultipleImage">
+                </vue-select-image> 
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-col>
+      </v-row>
 
       <v-btn depressed color="primary" @click="testButton">Test</v-btn>
 
@@ -69,3 +79,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .top-fix {
+    padding-top: 27px;
+  }
+</style>
