@@ -1,6 +1,14 @@
 <template>
   <div> <!-- no class 'main_element' here on purpose -->
-      <Gallery :images="images"/>
+      <Gallery :images="images" />
+
+      <vue-select-image :dataImages="dataImages"
+        :is-multiple="true"
+        :selectedImages="initialSelected"
+        @onselectmultipleimage="onSelectMultipleImage">
+      </vue-select-image>
+
+      <v-btn depressed color="primary" @click="testButton">Test</v-btn>
 
       <v-text-field v-model="url" placeholder="Paste url here" :rules="rules"></v-text-field>
       <v-btn depressed color="primary" @click="get_images">Get Images</v-btn>
@@ -12,10 +20,14 @@
 
 <script>
 import Gallery from '../components/ImageGallery.vue'
+import VueSelectImage from 'vue-select-image'
+
+let images
 
 export default {
   components:{
-    Gallery
+    Gallery,
+    VueSelectImage
   },
   data() {
     return {
@@ -29,6 +41,8 @@ export default {
       ],
       images: [],
       message: '',
+      initialSelected: [],
+      dataImages: [],
       url: '',
       // diffbot: `http://api.diffbot.com/v3/image?&token=878c55163b7541c4455a7d7198468a70&url=https%3A//aleksandar.panov.rs`
     }
@@ -38,13 +52,19 @@ export default {
       this.message = 'Wait, getting images'
       axios.get(`http://api.diffbot.com/v3/image?&token=878c55163b7541c4455a7d7198468a70&url=${this.url}`)
       .then((response) => {
-        console.log(response.data.objects)
-        this.images = response.data.objects
-        this.message = `Found ${response.data.objects.length} images. Check console!`
+        this.images = response.data.objects // this is temporary
+        this.dataImages = response.data.objects
+        this.message = `Found ${response.data.objects.length} images!`
       })
       .catch((error) => {
         console.log(error);
       });
+    },
+    onSelectMultipleImage(e) {
+      images = JSON.parse(JSON.stringify(e))
+    },
+    testButton() {
+      console.log(images)
     }
   }
 }

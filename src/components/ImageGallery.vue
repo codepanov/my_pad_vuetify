@@ -12,7 +12,6 @@
               <v-card flat tile class="d-flex">
                 <v-img
                   :src="image.url"
-                  
                   aspect-ratio="1"
                   class="grey lighten-2"
                 >
