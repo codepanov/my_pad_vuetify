@@ -7,7 +7,7 @@
           <v-card>
             <v-container fluid>
               <v-row>
-                <vue-select-image pa-0 :dataImages="dataImages"
+                <vue-select-image :dataImages="dataImages"
                   :is-multiple="true"
                   :selectedImages="initialSelected"
                   @onselectmultipleimage="onSelectMultipleImage">

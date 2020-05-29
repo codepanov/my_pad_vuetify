@@ -19,15 +19,17 @@
 .vue-select-image__thumbnail {
   /* padding: 6px; */ /*| Panov*/
   display: block;
-  padding: 3px; /*| Panov*/
+  /* padding: 3px; */ /*| Panov*/
   line-height: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 2px solid #ddd;
+  border-radius: 3px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
   transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
 }
 .vue-select-image__thumbnail--selected {
-  background: #08c;
+  /* background: #08c; */
+  border: 2px solid #08c;
 }
 .vue-select-image__img {
   -webkit-user-drag: none;
